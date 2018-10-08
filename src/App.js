@@ -5,14 +5,14 @@ import './App.css';
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     console.log("this is my initializer");
 
     const movies = [
       { id: 0, title: "Avengers: Infinity War", overview: "As the avengers an  their allies have continues to protect the world..." },
       { id: 1, title: "Avenger", overview: "This is my second overview..." }
-    ];
+    ]
 
     this.state = {
       rows: [
