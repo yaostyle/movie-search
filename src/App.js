@@ -2,39 +2,65 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import logo from './logo.svg';
 import './App.css';
+import MovieRow from './MovieRow.js'
+import $ from 'jquery'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    console.log("this is my initializer");
+    this.state = {}
 
-    const movies = [
-      { id: 0, title: "Avengers: Infinity War", overview: "As the avengers an  their allies have continues to protect the world..." },
-      { id: 1, title: "Avenger", overview: "This is my second overview..." }
-    ]
+    // console.log("this is my initializer");
 
-    this.state = {
-      rows: [
-        <p key="1">This is my row0</p>,
-        <p key="2">This is my row1</p>,
-        <p key="3">This is my row2</p>
-      ]
-    }
+    // const movies = [
+    //   { id: 0, poster_src: "https://image.tmdb.org/t/p/w185//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",title: "Avengers: Infinity War", overview: "As the avengers an  their allies have continues to protect the world..." },
+    //   { id: 1, poster_src: "https://image.tmdb.org/t/p/w185//cezWGskPY5x7GaglTTRN4Fugfb8.jpg",title: "Avenger", overview: "This is my second overview..." },
+    // ]
 
-    var movieRows = [];
+    // var movieRows = [];
 
-    movies.forEach((movie) => {
-      console.log(movie.title)
-      movieRows.push(<p>movie title: {movie.title}</p>)
+    // movies.forEach((movie) => {
+    //   console.log(movie.title)
+    //   const movieRow = <MovieRow movie={movie}/>
+    //   movieRows.push(movieRow)
+    // })
+
+    // this.state = { rows: movieRows }
+
+    this.performSearch()
+  }
+
+  performSearch() {
+    console.log("Perform search using moviedb")
+    const urlString = "https://api.themoviedb.org/3/search/movie?api_key=a037ec13ac28fafe8250b72e517bdc3f&query=avengers"
+    $.ajax({
+      url: urlString,
+      success: (searchResults) => {
+        console.log("Fetched data successfully.")
+        const results = searchResults.results
+        // console.log(results[0])
+
+        var movieRows = []
+        
+        results.forEach((movie) => {
+          movie.poster_src = "https://image.tmdb.org/t/p/w185" + movie.poster_path
+          console.log(movie.title)
+          const movieRow = <MovieRow movie={movie} />
+          movieRows.push(movieRow)
+        })
+
+        this.setState({rows: movieRows})
+      },
+      error: (xhr, status, err) => {
+        console.error("Failed to fetch data")
+      }
     })
-
-    this.state = { rows: movieRows }
   }
 
   render() {
     return (
-      <div className="App">
+      <div>
 
         <table className="titleBar">
           <tbody>
