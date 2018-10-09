@@ -11,23 +11,6 @@ class App extends Component {
 
     this.state = {}
 
-    // console.log("this is my initializer");
-
-    // const movies = [
-    //   { id: 0, poster_src: "https://image.tmdb.org/t/p/w185//7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",title: "Avengers: Infinity War", overview: "As the avengers an  their allies have continues to protect the world..." },
-    //   { id: 1, poster_src: "https://image.tmdb.org/t/p/w185//cezWGskPY5x7GaglTTRN4Fugfb8.jpg",title: "Avenger", overview: "This is my second overview..." },
-    // ]
-
-    // var movieRows = [];
-
-    // movies.forEach((movie) => {
-    //   console.log(movie.title)
-    //   const movieRow = <MovieRow movie={movie}/>
-    //   movieRows.push(movieRow)
-    // })
-
-    // this.state = { rows: movieRows }
-
     this.performSearch("ant man")
   }
 
